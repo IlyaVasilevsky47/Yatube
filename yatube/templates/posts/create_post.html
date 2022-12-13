@@ -1,0 +1,91 @@
+<!-- templates/posts/create_post.html -->
+{% extends 'base.html' %}
+{% block title %}
+{% if is_edit %}Редактирование поста{% else %}Новый пост{% endif %}{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+      <div class="card">
+        <div class="card-header">
+          {% if is_edit %}   
+            Редактирование поста   
+          {% else %}
+            Новый пост
+          {% endif %}             
+        </div>
+        <div class="card-body">  
+          {% if form.errors %}
+            {% for field in form %}
+              {% for error in field.errors %}
+                <dib class=" alert alert-danger">
+                  {{ error|escape }}
+                </div>
+              {% endfor %}
+              {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                  {{ error|escape }}
+                </div>
+              {% endfor %}
+            {% endfor %}
+          {% endif %}
+
+          <form method="post" enctype="multipart/form-data" action="{% if is_edit %}
+                                        {% url 'posts:post_edit' posts.id %}
+                                      {% else %}
+                                        {% url 'posts:post_create' %}
+                                      {% endif %}">
+          {% csrf_token %}
+          <!-- Пост -->
+          <div class="form-group row my-3 p-3">
+            <label for="{{ form.text.id_for_label }}">
+              {{ form.text.label }}
+              <span class="required text-danger">*</span>
+            </label>
+            <!-- Блок для ввода информации -->
+            {{ form.text }}
+            <small id="{{ form.text.id_for_label }}--help" class='form-text text-muted'>
+              {% if is_edit %}
+                Текст для редактирования поста
+              {% else %}
+                Текст нового поста
+              {% endif %}
+            </small>
+          </div><!-- text -->
+
+          <!-- Группа -->
+          <div class="form-group row my-3 p-3">
+            <label for="{{ form.group.id_for_label }}">
+              {{ form.group.label }}
+            </label>
+            <!-- Блок для ввода информации -->
+            {{ form.group }}
+            <small id="{{ form.group.id_for_label }}--help" class='form-text text-muted'>
+              Группа, к которой будет относиться пост
+            </small>
+          </div>
+
+          <!-- Изображение -->
+          <div class="form-group row my-3 p-3">
+            <label for="{{ form.image.id_for_label }}">
+              {{ form.image.label }}
+            </label>
+            <!-- Блок для ввода информации -->
+            {{ form.image }}
+          </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary">
+                {% if is_edit %}
+                  Добавить
+                {% else %}
+                  Сохранить
+                {% endif %} 
+            </button>
+            </div>
+          </form>
+        </div><!-- group -->
+      </div><!-- card -->
+    </div><!-- col -->
+  </div><!-- row -->
+</div><!-- container -->
+{% endblock %}
