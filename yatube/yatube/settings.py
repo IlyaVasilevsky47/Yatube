@@ -23,11 +23,18 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2^w$9%&-*_%+ilyr_tg-6sq=5=@*1vp_(0_3v4&l_6ta+$#!7c'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [
+'''ALLOWED_HOSTS = [
     'www.ilyavasilevskiy.pythonanywhere.com',
     'ilyavasilevskiy.pythonanywhere.com',
+]
+'''
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+    'testserver',
 ]
 
 
@@ -65,7 +72,7 @@ INTERNAL_IPS = [
 
 ROOT_URLCONF = 'yatube.urls'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_files')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
