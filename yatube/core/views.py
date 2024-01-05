@@ -6,6 +6,7 @@ ERROR_404_PAGE = 'core/404.html'
 ERROR_403_PAGE = 'core/403.html'
 ERROR_500_PAGE = 'core/500.html'
 
+
 def page_not_found(request, exception):
     return render(
         request,
