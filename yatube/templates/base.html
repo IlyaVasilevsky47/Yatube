@@ -1,27 +1,36 @@
 <!-- templates/base.html -->
-<!DOCTYPE html> 
-<html lang="ru">          
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="ru">
   <head>
     {% load static %}
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="msapplication-TileColor" content="#000">
-    <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}"> 
-    <title>{% block title %} {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css//ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bs-theme-overrides.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Articles-Cards-images.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Footer-Clean-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Gamanet_Pagination_bs5.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Navbar-Right-Links-icons.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans&amp;display=swap">
+    <link rel="icon" href="{% static 'img/logo.png' %}">
+    <title>{% block title %}{% endblock %}</title>
   </head>
-  <body>       
+  <body style="text-align: left;">
     <header>
       {% include 'includes/header.html' %}
     </header>
-    <main>
-      <div class="container py-5">
+    <main style="padding-top: 0px;margin-top: 0px;">
+      <div class="container py-4 py-xl-5" style="padding-top: 51px;margin-top: -25px;">
         {% block content %}
         {% endblock %}
       </div>
     </main>
-    <footer class="border-top text-center py-3">
-      {% include 'includes/footer.html' %} 
+    <footer style="margin-top: -54px;">
+        <footer class="text-center py-4">
+          {% include 'includes/footer.html' %} 
+        </footer>
     </footer>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
   </body>
 </html>

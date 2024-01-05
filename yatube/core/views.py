@@ -2,21 +2,24 @@ from django.shortcuts import render
 
 from http import HTTPStatus
 
+ERROR_404_PAGE = 'core/404.html'
+ERROR_403_PAGE = 'core/403.html'
+ERROR_500_PAGE = 'core/500.html'
 
 def page_not_found(request, exception):
     return render(
         request,
-        'core/404.html',
+        ERROR_404_PAGE,
         {'path': request.path},
         status=HTTPStatus.NOT_FOUND
     )
 
 
 def permission_denied(request, exception):
-    return render(request, 'core/403.html', status=HTTPStatus.FORBIDDEN)
+    return render(request, ERROR_403_PAGE, status=HTTPStatus.FORBIDDEN)
 
 
 def server_error(request):
     return render(
-        request, 'core/500.html', status=HTTPStatus.INTERNAL_SERVER_ERROR
+        request, ERROR_500_PAGE, status=HTTPStatus.INTERNAL_SERVER_ERROR
     )

@@ -3,75 +3,110 @@
 {% block title %}Пост{{ posts.text|truncatechars:30 }}{% endblock %}
 {% block content %}
 {% load thumbnail %}
-  <div class="row">
-    <aside class="col-12 col-md-3">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          Дата публикации: {{ posts.pub_date|date:"d E Y"}} 
-        </li>
-        {% if posts.group %}
-        <li class="list-group-item">
-          Группа: {{ posts.group }}
-          <a href="{% url 'posts:group_list' posts.group.slug %}">
-            все записи группы
-          </a>
-        </li>
-        {% endif %}
-        <li class="list-group-item">
-          Автор: {{ posts.author.get_full_name }}
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Всего постов автора: <span>{{ user_post.count }}</span>
-        </li>
-        <li class="list-group-item">
-          <a href="{% url 'posts:profile' posts.author %}">
-            все посты пользователя
-          </a>
-        </li>
+<!-- Заголовок страницы -->
+<div class="row mb-5" style="margin-bottom: -1px;padding-bottom: 0px;">
+  <div class="col-md-12 col-lg-12 col-xl-12 text-center mx-auto">
+      <h2>Подробная информация</h2>
+  </div>
+</div>
+
+<!-- Информация о посте -->
+<div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="margin-top: -54px;">
+
+  <!-- Описание поста -->
+  <div class="col-md-12 col-lg-3 col-xl-3 col-xxl-3 offset-xl-0" style="margin-right: 0px;padding-right: 12px;margin-bottom: -16px;">
+      <ul class="list-group">
+          <li class="list-group-item">
+            <span>Дата публикации: {{ posts.pub_date|date:"d E Y"}} </span>
+          </li>
+          {% if posts.group %}
+          <li class="list-group-item">
+            <span>Группа: {{ posts.group }}&nbsp;</span>
+            <a href="{% url 'posts:group_list' posts.group.slug %}">все записи группы</a>
+          </li>
+          {% endif %}
+          <li class="list-group-item">
+            <span>Автор: {{ posts.author.get_full_name }}</span>
+          </li>
+          <li class="list-group-item">
+            <span>Всего постов автора: {{ user_post.count }}</span>
+          </li>
+          <li class="list-group-item">
+            <a class="link-primary" href="{% url 'posts:profile' posts.author %}">
+              <span style="color: rgb(32, 139, 247);">Все посты пользователя</span>
+            </a>
+          </li>
       </ul>
-    </aside>
-    <article class="col-12 col-md-9">
-      {% thumbnail posts.image "960x339" crop="center" upscale=True as im %}
-        <img class="card-img my-2" src="{{ im.url }}">
-      {% endthumbnail %}
-      <p>{{ posts.text }}</p>
-      {% if request.user == posts.author %}
-      <a class="btn btn-primary" href="{% url 'posts:post_edit' posts.id %}"> 
-        редактировать запись
-      </a>
-      {% endif %}
-      <!-- Форма добавления комментария -->
-      {% load user_filters %}
+  </div>
 
-      {% if user.is_authenticated %}
-        <div class="card my-4">
-          <h5 class="card-header">Добавить комментарий:</h5>
+  <!-- Текст поста с картикой -->
+  <div class="col-md-12 col-lg-9 col-xl-9 col-xxl-9" style="padding-right: 12px;">
+      <div class="card">
+        {% thumbnail posts.image "960x339" crop="center" upscale=True as im %}
+        <img class="card-img-top w-100 d-block" src="{{ im.url }}">
+        {% endthumbnail %}
           <div class="card-body">
-            <form method="post" action="{% url 'posts:add_comment' posts.id %}">
-              {% csrf_token %}      
-              <div class="form-group mb-2">
-                {{ form.text|addclass:"form-control" }}
-              </div>
-              <button type="submit" class="btn btn-primary">Отправить</button>
-            </form>
+              <p class="card-text">
+                <span style="color: rgb(46, 46, 46); background-color: rgb(255, 255, 255);">{{ posts.text }}</span>
+              </p>
+              {% if request.user == posts.author %}
+              <form action="{% url 'posts:post_edit' posts.id %}">
+                <button class="btn btn-primary" type="submit">Редактировать запись</button>
+              </form>
+              {% endif %}
           </div>
-        </div>
-      {% endif %}
+      </div>
+  </div>
 
-      {% for comment in comments %}
-        <div class="media mb-4">
-          <div class="media-body">
-            <h5 class="mt-0">
-              <a href="{% url 'posts:profile' comment.author.username %}">
-                {{ comment.author.username }}
-              </a>
-            </h5>
-            <p>
-              {{ comment.text }}
-            </p>
+  <!-- Форма добавления комментария -->
+  {% load user_filters %}
+  {% if user.is_authenticated %}
+  <div class="col-md-12 col-lg-9 col-xl-9 offset-lg-3 offset-xl-3" style="padding-top: 0px;margin-top: 9px;">
+      <div class="card">
+          <div class="card-header">
+              <h5 class="mb-0">
+                <span style="background-color: rgba(255, 255, 255, 0.03);">Добавить комментарий:</span>
+              </h5>
           </div>
-        </div>
-      {% endfor %}
-    </article>
-  </div><!-- row -->
+          <div class="card-body">
+              <form method="post" action="{% url 'posts:add_comment' posts.id %}">
+                  {% csrf_token %}
+                  <div class="col">
+                    {{ form.text }}
+                  </div>
+                  <div class="col" style="margin-top: 10px;">
+                    <button class="btn btn-primary" type="submit">Отправить</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+  {% endif %}
+
+  <!-- Вывод коментариев -->
+  {% if comments %}
+  <div class="col-md-12 col-lg-9 col-xl-9 col-xxl-9 offset-lg-3 offset-xl-3 offset-xxl-3" style="padding-top: 0px;margin-top: 11px;">
+      <div class="card">
+          <div class="card-header">
+              <h5 class="mb-0">Комментарии:</h5>
+          </div>
+          <div class="card-body" style="margin: 0px 0px 0px;margin-top: 2px;padding-top: 0px;">
+              {% for comment in comments %}
+              <div class="card" style="margin: 16px 0px 0px;margin-top: 21px;">
+                <div class="card-header">
+                    <a href="{% url 'posts:profile' comment.author.username %}">
+                        <h5 class="mb-0">{{ comment.author.username }}</h5>
+                    </a>
+                    <p style="margin-bottom: 0px;">Дата: {{ comment.created|date:"d E Y"}}</p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ comment.text }}</p>
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+      </div>
+  </div>
+  {% endif %}
+</div>
 {% endblock %}

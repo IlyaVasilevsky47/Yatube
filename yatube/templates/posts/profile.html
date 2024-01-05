@@ -3,29 +3,33 @@
 {% block title %}Профайл пользователя{{ username }}{% endblock %}     
 {% block content %}
 {% load thumbnail %}
-  <div class="mb-5">      
-    <h1>Все посты пользователя {{ username.get_full_name }} </h1>
-    <h3>Всего постов: {{ page_obj.paginator.count }} </h3>
-    {% if request.user.is_authenticated and request.user != username %}
-      {% if following %}
-      <a
-        class="btn btn-lg btn-light"
-        href="{% url 'posts:profile_unfollow' username %}" role="button"
-      >
-        Отписаться
-      </a>
-      {% else %}
+<div class="row mb-5" style="margin-bottom: -1px;padding-bottom: 0px;">
+  <div class="col-md-12 col-lg-12 col-xl-12 text-center mx-auto">
+      <h2>Все посты пользователя "{{ username.get_full_name }}"</h2>
+      <h4>Всего постов: {{ page_obj.paginator.count }} </h4>
+      {% if request.user.is_authenticated and request.user != username %}
+        {% if following %}
+        <a
+          class="btn btn-lg btn-light"
+          href="{% url 'posts:profile_unfollow' username %}" role="button"
+        >
+          Отписаться
+        </a>
+        {% else %}
         <a
           class="btn btn-lg btn-primary"
           href="{% url 'posts:profile_follow' username %}" role="button"
         >
           Подписаться
         </a>
+        {% endif %}
       {% endif %}
-    {% endif %}
   </div>
+</div>
+<div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="margin-top: -54px;">
   {% for post in page_obj %}
     {% include 'posts/includes/post_list.html' %}
   {% endfor %}
-  {% include 'posts/includes/paginator.html' %}
+</div>
+{% include 'posts/includes/paginator.html' %}
 {% endblock %}

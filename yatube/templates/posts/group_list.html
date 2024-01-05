@@ -2,10 +2,16 @@
 {% extends 'base.html' %}
 {% block title %}Записи сообщества{{ group.title }}{% endblock %}
 {% block content %}
-  <h1>{{ group.title }}</h1>
-  <p>{{ group.description }}</p>
-  {% for post in page_obj %}
-    {% include 'posts/includes/post_list.html' %}
-  {% endfor %}
+  <div class="row mb-5" style="margin-bottom: -1px;padding-bottom: 0px;">
+    <div class="col-md-12 col-lg-12 col-xl-12 text-center mx-auto">
+        <h2>{{ group.title }}</h2>
+        <p class="w-lg-50">{{ group.description }}</p>
+    </div>
+  </div>
+  <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="margin-top: -54px;">
+    {% for post in page_obj %}
+      {% include 'posts/includes/post_list.html' %}
+    {% endfor %}
+  </div>
   {% include 'posts/includes/paginator.html' %}
 {% endblock %}

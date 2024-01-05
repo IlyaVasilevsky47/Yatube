@@ -7,7 +7,7 @@ from .forms import PostForm, CommentForm
 from .models import Group, Post, User, Comment, Follow
 
 TIME_CASH = 5
-LIMIT = 10
+LIMIT = 6
 ONE_FOLLOW = 1
 
 

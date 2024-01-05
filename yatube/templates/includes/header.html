@@ -1,47 +1,41 @@
 <!-- templates/includes/header.html -->
-{% load static %}
-<nav class="navbar navbar-light" style="background-color: lightskyblue">
-    <div class="container">
-      <a class="navbar-brand" href="{% url 'posts:index' %}">
-        <img src="{% static 'img/logo.png' %}" 
-          width="30" height="30" class="d-inline-block align-top" alt="">
-        <span style="color:red">Ya</span>tube
-      </a>
-      {% with request.resolver_match.view_name as view_name %} 
-      <ul class="nav nav-pills">
-        <li class="nav-item"> 
-          <a class="nav-link {% if view_name  == 'about:author' %}active{% endif %}" 
-             href="{% url 'about:author' %}">Об авторе</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {% if view_name  == 'about:tech' %}active{% endif %}" 
-             href="{% url 'about:tech' %}">Технологии</a>
-        </li>
-        {% if request.user.is_authenticated %}
-        <li class="nav-item"> 
-          <a class="nav-link {% if view_name == 'posts:post_create' %}active{% endif %}" href="{% url 'posts:post_create' %}">Новая запись</a>
-        </li>
-        <li class="nav-item"> 
-          <a class="nav-link link-light {% if view_name  == 'users:password_change' %}active{% endif %}" 
-             href="{% url 'users:password_change' %}">Изменить пароль</a>
-        </li>
-        <li class="nav-item"> 
-          <a class="nav-link link-light" href="{% url 'users:logout' %}">Выйти</a>
-        </li>
-        <li>
-          Пользователь: {{ user.username }}
-        </li>
-        {% else %}
-        <li class="nav-item"> 
-          <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}" 
-             href="{% url 'users:login' %}">Войти</a>
-        </li>
-        <li class="nav-item"> 
-          <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}" 
-             href="{% url 'users:signup' %}">Регистрация</a>
-        </li>
-        {% endif %}
-        {% endwith %}
-      </ul>
-    </div>
-  </nav> 
+<div class="container">
+    <nav class="navbar navbar-expand-md bg-body py-3">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="{% url 'posts:index' %}"><span class="bs-icon-sm bs-icon-rounded bs-icon-primary d-flex justify-content-center align-items-center me-2 bs-icon" style="font-size: 23px;text-align: center;padding-left: 0px;margin-left: 0px;"><i class="icon ion-social-yahoo"></i></span><span>Yatube</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-2"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-2" style="padding-right: 0px;margin-right: -4px;">
+                <ul class="navbar-nav ms-auto">
+                  {% with request.resolver_match.view_name as view_name %} 
+                    <li class="nav-item">
+                      <a class="nav-link {% if view_name == 'about:author' %}active{% endif %}"
+                          href="{% url 'about:author' %}">Об авторе</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link {% if view_name == 'about:tech' %}active{% endif %}" 
+                          href="{% url 'about:tech' %}">Технологии</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link {% if view_name == 'posts:post_create' %}active{% endif %}" 
+                          href="{% url 'posts:post_create' %}">Новая запись</a></li>
+                    <li class="nav-item d-md-flex d-lg-flex d-xl-flex d-xxl-flex align-items-md-center align-items-lg-center align-items-xl-center align-items-xxl-center">
+                        <div class="nav-item dropdown"><a class="dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgb(0,0,0);"><span style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">Пользователь: {{ user.username }}</span></a>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="{% url 'users:password_change' %}">Изменить пароль</a>
+                              <a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a></div>
+                        </div>
+                    </li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link {% if view_name  == 'users:login' %}active{% endif %}" 
+                          href="{% url 'users:login' %}">Войти</a></li>
+                    <li class="nav-item"><a class="nav-link {% if view_name  == 'users:signup' %}active{% endif %}" 
+                          href="{% url 'users:signup' %}">Регистрация</a></li>
+                    {% endif %}
+                  {% endwith %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<hr style="padding-left: 0px;margin-top: 0px;">
+
+

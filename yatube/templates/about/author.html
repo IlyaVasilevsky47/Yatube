@@ -2,9 +2,16 @@
 {% extends "base.html" %}
 {% block title %}Об авторе проекта{% endblock %}
 {% block content %}
-  <h1>Привет, я автор</h1>
-  <p>
-    Тут я размещу информацию о себе, используя свои умения верстать.
-    Картинки, блоки, элементы бустрап. А может быть, просто напишу несколько абзацев текста. 
-  </p>
+<div class="row mb-5" style="margin-bottom: -1px;padding-bottom: 0px;">
+    <div class="col-md-12 col-lg-12 col-xl-12 text-center mx-auto">
+        <h2>Обо мне</h2>
+    </div>
+</div>
+<div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="margin-top: -54px;">
+    <div class="col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+        {% load static %}
+        <div class="text-center"><img class="img-thumbnail" src="{% static "img/cat.jpg" %}" width="527" height="333"></div>
+        <p>Я увлекаюсь разработкой со школьных лет, посещал курсы по созданию сайтов и изучал HTML, использовал JavaScript. В старших классах я начал самостоятельное изучение Java, используя видеоуроки. Во время обучения в техникуме у меня появился интерес к разработке на языке Python, и мне предложили пройти курсы. Сейчас я интересуюсь машинным обучением, изучаю алгоритмы и асинхронное программирование.</p>
+    </div>
+</div>
 {% endblock %}

@@ -1,21 +1,33 @@
 <!-- templates/posts/includes/switcher.html -->
 {% load thumbnail %}
-<article>
-    <ul>
-      <li>
-        Автор: {{ post.author.get_full_name }}
-      </li>
-      <li>
-        Дата публикации: {{ post.pub_date|date:"d E Y" }}
-      </li>
-    </ul>
-    {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
-      <img class="card-img my-2" src="{{ im.url }}">
-    {% endthumbnail %}
-    <p>{{ post.text }}</p>    
-  <a href="{% url 'posts:post_detail' post.id %}">подробная информация</a>
-</article>
-{% if post.group %}   
-  <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
-{% endif %} 
-{% if not forloop.last %}<hr>{% endif %}
+<div class="col-xl-6 col-xxl-6 offset-xxl-0">
+    <div class="card">
+      {% if post.image %}
+        {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
+        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{{ im.url }}" width="354" height="200">
+        {% endthumbnail %}
+      {% else %}
+        {% load static %}
+        <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="{% static 'img/gray.jpg' %}" width="354" height="200">
+      {% endif %}
+        <div class="card-body p-4">
+            <div>
+                <p class="fw-bold mb-0">Автор: {{ post.author.get_full_name }}</p>
+                <p style="margin-bottom: 0px;"><strong>Дата публикации: {{ post.pub_date|date:"d E Y" }}</strong></p>
+            </div>
+            <hr style="margin-top: 11px;padding-left: 0px;margin-bottom: 1px;">
+            <div>
+                <p class="text-break"><span style="color: rgb(32, 33, 34);">{{ post.text }}</span></p>
+            </div>
+            <hr style="margin-top: 11px;padding-left: 0px;margin-bottom: 1px;">
+            {% if post.group %}
+            <div>
+              <a href="{% url 'posts:group_list' post.group.slug %}"><span style="color: var(--bs-link-color);">Все записи группы</span></a>
+            </div>
+            {% endif %}
+            <div style="padding-top: 0px;margin-top: 0px;">
+              <a href="{% url 'posts:post_detail' post.id %}"><span style="color: var(--bs-link-color);">Подробная информация</span>
+            </a></div>
+        </div>
+    </div>
+</div>
