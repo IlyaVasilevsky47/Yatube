@@ -41,6 +41,10 @@ Yatube - это платформа, которая позволяет людям
     python yatube/manage.py runserver 
 ```
 
+
+## Тесты:
+Внутрение тесты
+
 ## Автор:
 - Василевский И.А.
 - [Почта](vasilevskijila047@gmail.com)

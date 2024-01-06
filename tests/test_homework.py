@@ -249,7 +249,7 @@ class TestGroupView:
             '`{% block header %}{{ название_группы }}{% endblock %}`'
         )
         assert re.search(
-            r'<\s*p\s*>\s*' + group.description + r'\s*<\s*\/p\s*>',
+            r'<\s*p class="w-lg-50"\s*>\s*' + group.description + r'\s*<\s*\/p\s*>',
             html
         ), 'Отредактируйте HTML-шаблон, не найдено описание группы `<p>{{ описание_группы }}</p>`'
 

@@ -171,16 +171,16 @@ class PostPagesTests(TestCase):
             ))
         Post.objects.bulk_create(posts)
         examination_pages = {
-            reverse('posts:index'): 10,
-            reverse('posts:index') + '?page=2': 3,
-            reverse('posts:group_list', kwargs={'slug': 'test-slug'}): 10,
+            reverse('posts:index'): 6,
+            reverse('posts:index') + '?page=2': 6,
+            reverse('posts:group_list', kwargs={'slug': 'test-slug'}): 6,
             reverse(
                 'posts:group_list', kwargs={'slug': 'test-slug'}
-            ) + '?page=2': 3,
-            reverse('posts:profile', kwargs={'username': 'auth'}): 10,
+            ) + '?page=2': 6,
+            reverse('posts:profile', kwargs={'username': 'auth'}): 6,
             reverse(
                 'posts:profile', kwargs={'username': 'auth'}
-            ) + '?page=2': 3,
+            ) + '?page=2': 6,
         }
         # Проверка paginator
         for reverse_name, page in examination_pages.items():
