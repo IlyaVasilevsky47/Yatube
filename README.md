@@ -19,7 +19,7 @@ Yatube - это онлайн-платформа, предлагающая пол
 ## Запуск проекта:
 1. Клонируем проект
 ```bash
-git git@github.com:IlyaVasilevsky47/Yatube.git
+git clone git@github.com:IlyaVasilevsky47/Yatube.git
 ```
 
 2. Создаем и активируем виртуальное окружение. 
