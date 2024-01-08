@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/IlyaVasilevsky47/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/IlyaVasilevsky47/hw05_final/actions/workflows/python-app.yml)
 
+
 Yatube - это онлайн-платформа, предлагающая пользователям возможность общаться, обмениваться информацией, а также находить новых друзей и знакомых.
 
 ## Основные возможности:
@@ -42,16 +43,12 @@ python yatube/manage.py migrate
 python yatube/manage.py runserver 
 ```
 
-<details>
-<summary>
 ## Тесты:
-</summary>
 В проекте используются написанные тесты. Чтобы запустить их, нужно ввести команды в терминале:
 ```bash
 cd yatube
 python manage.py test 
 ```
-</details>
 
 ## Автор:
 - Василевский И.А.

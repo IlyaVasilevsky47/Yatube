@@ -6,12 +6,7 @@ SECRET_KEY = '2^w$9%&-*_%+ilyr_tg-6sq=5=@*1vp_(0_3v4&l_6ta+$#!7c'
 
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
-]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'posts.apps.PostsConfig',
@@ -39,13 +34,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
-
 ROOT_URLCONF = 'yatube.urls'
-
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
@@ -111,8 +100,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
