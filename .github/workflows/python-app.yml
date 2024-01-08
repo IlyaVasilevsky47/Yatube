@@ -10,9 +10,9 @@ jobs:
         python-version: [3.7, 3.8, 3.9]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -27,10 +27,5 @@ jobs:
         python -m flake8
 
     - name: Test with pytest
-      env:
-        SECRET_KEY: "5UP3R-53CR3T-K3Y-FR0M-TurboKach"
-        DJANGO_SETTINGS_MODULE: yatube.settings
-        DEBUG: 1
-        ALLOWED_HOSTS: "*"
       run: |
         py.test
