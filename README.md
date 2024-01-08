@@ -17,46 +17,41 @@ Yatube - это онлайн-платформа, предлагающая пол
 ## Запуск проекта:
 1. Клонируем проект
 ```bash
-    git
+git
 ```
 
 2. Создаем и активируем виртуальное окружение. 
 ```bash
-    python -m venv venv
-    source venv/scripts/activate
+python -m venv venv
+source venv/scripts/activate
 ```
 
 3. Обновляем менеджер пакетов pip и устанавливаем зависимости из файла requirements.txt.
 ```bash
-    python -m pip install --upgrade pip
-    pip install -r requirements.txt
+python -m pip install --upgrade pip
+pip install -r requirements.txt
 ```
 
 4. Создаем базу данных. 
 ```bash
-    python yatube/manage.py migrate 
+python yatube/manage.py migrate 
 ```
 
 5. Запускаем проект.
 ```bash
-    python yatube/manage.py runserver 
+python yatube/manage.py runserver 
 ```
-
 
 <details>
 <summary>
-Installation
-</summary>
-
-## Installation
-</details>
-
 ## Тесты:
+</summary>
 В проекте используются написанные тесты. Чтобы запустить их, нужно ввести команды в терминале:
 ```bash
-    cd yatube
-    python yatube/manage.py test 
+cd yatube
+python manage.py test 
 ```
+</details>
 
 ## Автор:
 - Василевский И.А.
