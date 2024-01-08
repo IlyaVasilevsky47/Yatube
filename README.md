@@ -3,7 +3,7 @@
 [![CI](https://github.com/IlyaVasilevsky47/hw05_final/actions/workflows/python-app.yml/badge.svg?branch=master)](https://github.com/IlyaVasilevsky47/hw05_final/actions/workflows/python-app.yml)
 
 ![Screenshot](https://github.com/IlyaVasilevsky47/hw05_final/blob/master/readme_img/website.jpg)
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+
 Yatube - это онлайн-платформа, предлагающая пользователям возможность общаться, обмениваться информацией, а также находить новых друзей и знакомых.
 
 ## Основные возможности:
