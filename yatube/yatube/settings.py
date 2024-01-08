@@ -2,7 +2,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = '2^w$9%&-*_%+ilyr_tg-6sq=5=@*1vp_(0_3v4&l_6ta+$#!7c'
+SECRET_KEY = os.getenv(
+    'SECRET_KEY', default='2^w$9%&-*_%+ilyr_tg-6sq=5=@*1vp_(0_3v4&l_6ta+$#!7c'
+)
 
 DEBUG = True
 
