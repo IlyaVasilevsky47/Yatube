@@ -1,6 +1,6 @@
-from django.shortcuts import render
-
 from http import HTTPStatus
+
+from django.shortcuts import render
 
 ERROR_404_PAGE = 'core/404.html'
 ERROR_403_PAGE = 'core/403.html'
